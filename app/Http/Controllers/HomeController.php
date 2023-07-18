@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\MyPost;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -102,5 +103,28 @@ class HomeController extends Controller
         //return DB::table('posts')->count();
 
         //return $posts = MyPost::all();
+
+        /**
+         * 1.Retriveing all data
+         * 2.Retriveing single data
+         * 3.Retriveing a single data or throw error
+         */
+
+        //return Post::all(); //DB::table('posts')->get();
+
+        /* return Post::find(55);
+
+        $post = Post::find(55);
+
+        return $post->title; */
+
+        //return $post = Post::findOrFail(59);
+
+        /* $posts = Post::all();
+
+        foreach($posts as $post) 
+        {
+            echo $post->title;
+        } */
     }
 }
