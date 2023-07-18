@@ -126,5 +126,45 @@ class HomeController extends Controller
         {
             echo $post->title;
         } */
+
+
+        //return Post::where('status', 1)->get();
+        //return Post::where('status', 1)->orWhere('id', 55)->get();
+
+        // 51 => Inserting or Saving data with Eloquent
+        /* $post = new Post();
+
+        $post->title = 'post 4';
+        $post->description = 'post 4 description inserted';
+        $post->status = 1;
+        $post->publish_date = date('Y-m-d');
+        $post->user_id = 1;
+
+        $post->save();
+
+        dd('success'); */
+
+
+        // 52 => Updating data with Eloquent
+
+        /* //$post = Post::find(56);
+        $post = Post::where('id', 57)->first();
+        //$post = Post::where('id', 57)->first(); // collection
+
+        $post->title = 'post 4 new title updated';
+
+        $post->save();
+
+        dd('success'); */
+
+        //53 => Deleting data with Eloquent
+
+        //Post::find(70)->delete(); 
+        //Post::findOrFail(70)->delete();
+        
+        Post::where('id', 70)->delete(); 
+
+
+        dd('success');
     }
 }
