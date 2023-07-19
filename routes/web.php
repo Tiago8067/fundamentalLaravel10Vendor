@@ -25,12 +25,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+//Route::group(["middleware" => "authCheck"], function () {
+Route::group(["middleware" => "authCheck2"], function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+
+    Route::get('/profile', function () {
+        return view('profile');
+    });
+});
+
+
 Route::get('/posts/trash', [PostController::class, 'trashed'])->name('posts.trashed'); //funcao adicionado num controller resource tem de estar acuioma da rota resource, qualquer novo metodo adiconado
 Route::get('/posts/{id}/restore', [PostController::class, 'restore'])->name('posts.restore');
 Route::delete('/posts/{id}/force_delete', [PostController::class, 'forceDelete'])->name('posts.force_delete');
 
+// Route::resource('posts', PostController::class)->middleware('authCheck2');
 Route::resource('posts', PostController::class);
 
+Route::get('/unavailable', function () {
+    return view('unavailable');
+})->name('unavailable');
+
+// Route::group([], callback)
 
 
 
