@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
 
         //$this->call(PostSeeder::class);
 
-        //Post::factory(200)->create();
-        //User::factory(4)->create();ç
-        Address::factory(4)->create();
+        Post::factory(200)->create();
+        //User::factory(4)->create();
+        //Address::factory(4)->create();
     }
 }
