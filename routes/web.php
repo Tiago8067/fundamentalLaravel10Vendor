@@ -6,6 +6,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PostController;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/posts/trash', [PostController::class, 'trashed'])->name('posts.trashed'); //funcao adicionado num controller resource tem de estar acuioma da rota resource, qualquer novo metodo adiconado
+Route::get('/posts/{id}/restore', [PostController::class, 'restore'])->name('posts.restore');
+Route::delete('/posts/{id}/force_delete', [PostController::class, 'forceDelete'])->name('posts.force_delete');
+
+Route::resource('posts', PostController::class);
+
+
+
+
+
+
+
+
 
 
 Route::get('/home', HomeController::class);
