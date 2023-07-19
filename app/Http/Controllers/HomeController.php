@@ -23,12 +23,9 @@ class HomeController extends Controller
     {
         return view('home');
 
-        //Storage::delete(['images/TnYfNwGbHwvrM3gJs7wtAFhbDSDrAfaWRwgFO1RA.png']);
-
-        //File::delete(storage_path('/app/public/RhrBxh8JO9eP3vsuEyNYR9UWZA2PDwflg580T3JS.png'));
-
-        //unlink(storage_path('/app/public/images/new_image.jpg'));
-
-        
+        /* $posts = Post::all();
+    
+        //return response()->json($posts);
+        return response($posts); */
     }
 }

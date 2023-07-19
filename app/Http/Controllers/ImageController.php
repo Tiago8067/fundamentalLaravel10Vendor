@@ -9,18 +9,19 @@ class ImageController extends Controller
 {
     public function handleImage(Request $request)
     {
-        //return 'hello';
-        //return $request->all();
-
-        //dd($request->file('image'));
-
-        //$request->image->store('/images');
-
         $request->validate([
             'image' => ['required', 'min:100', 'max:500', 'mimes:png,jpg,gif']
-            //'image' => ['required', 'min:100', 'max:500', 'image']
         ]);
 
         $request->image->storeAs('/images', 'new_image.jpg');
+
+        //return redirect()->route('success');
+        //return redirect()->back();
+        return redirect('/success');
+    }
+
+    public function download()
+    {
+        return response()->download(public_path('/storage/images/new_image.jpg'));
     }
 }

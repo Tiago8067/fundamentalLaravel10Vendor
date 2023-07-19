@@ -3,7 +3,7 @@
 @section('content')
     <main role="main" class="container">
 
-        <img src="{{ asset('/storage/images/new_image.jpg') }}" alt="">
+        {{-- <img src="{{ asset('/storage/images/new_image.jpg') }}" alt=""> --}}
 
         <div class="col-md-4 mt-5">
 
@@ -29,5 +29,8 @@
                 </div>
             </div>
         </div>
+
+        <a class="btn btn-primary mt-3" href="{{ route('download') }}">Download Image</a>
+
     </main>
 @endsection
