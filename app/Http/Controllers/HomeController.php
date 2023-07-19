@@ -11,6 +11,8 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class HomeController extends Controller
 {
@@ -19,26 +21,14 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        /* $categories = Category::all(); */
+        return view('home');
+
+        //Storage::delete(['images/TnYfNwGbHwvrM3gJs7wtAFhbDSDrAfaWRwgFO1RA.png']);
+
+        //File::delete(storage_path('/app/public/RhrBxh8JO9eP3vsuEyNYR9UWZA2PDwflg580T3JS.png'));
+
+        //unlink(storage_path('/app/public/images/new_image.jpg'));
+
         
-        /* $categories = Category::find(2)->posts;
-
-        return view('home', compact('categories')); */
-
-        // post may have many tags
-        
-        // tag may have many posts
-
-        //pivot table
-
-        $posts = Post::with('tags')->get();
-
-        $tag = Tag::first();
-
-        //$post->tags()->attach($tag);
-        //$post->tags()->attach([2,3,4]);
-
-        //return $post;
-        return view('home', compact('posts'));
     }
 }
