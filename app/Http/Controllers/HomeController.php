@@ -162,9 +162,50 @@ class HomeController extends Controller
         //Post::find(70)->delete(); 
         //Post::findOrFail(70)->delete();
         
-        Post::where('id', 70)->delete(); 
+        /* Post::where('id', 70)->delete(); 
 
+
+        dd('success'); */
+
+
+        //54 => Mass Assignment
+        /* $post = Post::create([
+            'title' => 'this is from a mass assign',
+            'description' => 'this a discription from mass assign',
+            'status' => 1,
+            'publish_date' => date('Y-m-d'),
+            'user_id' =>  1
+        ]); */
+
+        /* $post = Post::find(58)->update([
+            'title' => 'the data from a mass assign has been updated'
+        ]); */
+
+        /* $post = Post::where('status', 1)->update([
+            'title' => 'the data from a mass assign has been updated'
+        ]);
+
+        dd('success'); */
+
+        // 55 => Soft Deleting -Trashing
+        /* Post::where('id', 57)->delete();
+
+        dd('success'); */
+
+        //return Post::all();
+
+        //56 => Retrieving Deleted Data
+        //return Post::onlyTrashed()->get();
+
+        //57 => Restore A Record Or Deleting A Record Permanently
+        /* Post::withTrashed()->find(57)->restore();
+
+        dd('success'); */
+
+        Post::withTrashed()->find(57)->forceDelete();
 
         dd('success');
+
+        //58 => Factories
     }
 }
