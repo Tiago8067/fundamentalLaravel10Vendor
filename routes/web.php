@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
+use App\Models\Post2;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,11 @@ Route::get('/unavailable', function () {
 })->name('unavailable');
 
 // Route::group([], callback)
+
+Route::get('contact2', function() {
+    $posts = Post2::all();
+    return view('contact2', compact('posts'));
+});
 
 
 
