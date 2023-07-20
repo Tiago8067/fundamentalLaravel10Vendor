@@ -11,6 +11,7 @@ use App\Mail\OrderShipped;
 use App\Models\Post2;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,6 +68,39 @@ Route::get('send-email', function() {
     Mail::send(new OrderShipped);
 
     dd('success');
+});
+
+Route::get('get-session', function(Request $request) { 
+    // $data = session()->all();
+
+    $data = $request->session()->all();
+
+    // $data = $request->session()->get('_token');
+
+    dd($data);
+});
+
+
+Route::get('save-session', function(Request $request) {
+    // $request->session()->put('user_id', '123');
+    // $request->session()->put(['user_status' => 'logged_in']);
+    session(['user_ip' => '123.23.11']);
+    return redirect('get-session');
+});
+
+Route::get('destroy-session', function(Request $request) {
+    // $request->session()->forget('user_id');
+    // $request->session()->forget(['user_status', 'user_ip']);
+    // session()->forget('user_id');
+    // session()->forget(['user_status', 'user_ip']);
+    session()->flush();
+    // $request->session()->flush();
+    return redirect('get-session');
+});
+
+Route::get('flash-session', function(Request $request) {
+    $request->session()->flash('status', 'ture'); // quando se usa este metodo flash, mudando de pagina a secao e automaticamente destroiada/apagada
+    return redirect('get-session');
 });
 
 
