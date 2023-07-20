@@ -7,6 +7,7 @@ use App\Models\Category2;
 use App\Models\Post2;
 use Illuminate\Http\Request;
 use File;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -22,7 +23,22 @@ class PostController extends Controller
     public function index()
     {
         //$posts = Post2::all();
-        $posts = Post2::paginate(5);
+        //$posts = Post2::paginate(5); // Cache
+        /* $posts = Cache::remember('posts', 60, function(){ // saved in cache memory the data for 60 seconds (60 * 60) seria guardado por 1 hora
+            // return Post2::paginate(5);
+            return Post2::with('category2')->paginate(5);
+        }); */
+
+        /* $posts = Cache::rememberForever('posts', function(){ // saved in cache memory the data forever
+            // return Post2::paginate(5);
+            return Post2::with('category2')->paginate(5);
+        }); */
+
+        $posts = Cache::remember('posts-page-'.request('page', 1), 60*3, function(){ // saved in cache memory the data for 60 seconds (60 * 60) seria guardado por 1 hora
+            // return Post2::paginate(5);
+            return Post2::with('category2')->paginate(5);
+        });
+
         return view('index2', compact('posts'));
     }
 

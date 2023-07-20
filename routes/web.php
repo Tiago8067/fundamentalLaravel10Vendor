@@ -12,6 +12,7 @@ use App\Models\Post2;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -102,6 +103,10 @@ Route::get('flash-session', function(Request $request) {
     $request->session()->flash('status', 'ture'); // quando se usa este metodo flash, mudando de pagina a secao e automaticamente destroiada/apagada
     return redirect('get-session');
 });
+
+Route::get('forget-cache', function() {
+    Cache::forget('posts');
+}); // mudando para esta rota a cache que foi guardada para sempre e apagada e quando vooltarmos a essa rota a cache volta a ser guardada novamente
 
 
 
