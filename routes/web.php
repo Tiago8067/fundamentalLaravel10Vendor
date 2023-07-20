@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Jobs\SendMail;
+use App\Mail\PostPublished;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,4 +47,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/user-data', function () {
     return Auth::user();
+});
+
+
+Route::get('send-email', function () {
+
+    SendMail::dispatch();
+
+    // Mail::send(new PostPublished());
 });
