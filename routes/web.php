@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\UserRegisterd;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Jobs\SendMail;
@@ -55,4 +56,14 @@ Route::get('send-email', function () {
     SendMail::dispatch();
 
     // Mail::send(new PostPublished());
+});
+
+
+Route::get('user-register', function () {
+    $email = 'user@gmail.com';
+
+    //event(new UserRegisterd());
+    event(new UserRegisterd($email));
+
+    dd('message send');
 });
